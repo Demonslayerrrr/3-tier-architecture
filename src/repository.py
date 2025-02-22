@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date
 
 class UserRepository:
     def __init__(self) -> None:
@@ -8,9 +8,9 @@ class UserRepository:
     def add_user(self, user_info:dict) -> None:
         user = {
             "id": self.user_id,
-            "name": user_info["firstName"],
-            "last_name": user_info["lastName"],
-            "age": datetime.year - user_info["birthYear"],
+            "name": user_info["first_name"],
+            "last_name": user_info["last_name"],
+            "age": date.today().year - user_info["birth_year"],
             "group": user_info["group"]
         }
         self.users[self.user_id] = user
