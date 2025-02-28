@@ -12,3 +12,6 @@ class UserController:
     
     def get_user(self, user_id:int) -> dict:
         return self.repository.get_user(user_id)
+
+    def patch_user(self, user_id:int, user_modify:dict) -> None:
+        self.repository.patch_user(user_id,user_modify)

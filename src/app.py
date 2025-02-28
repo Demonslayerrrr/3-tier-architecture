@@ -23,5 +23,14 @@ def add_user():
     controller.add_user(user_info)
     return jsonify({"message": "User added"}), HTTPStatus.CREATED
     
+@app.patch("/users/<int:user_id>")
+def patch_user(user_id):
+    try:
+        user_modify = request.json
+        controller.patch_user(user_id,user_modify)
+        return jsonify({"message": "User info modified"}),HTTPStatus.OK
+
+    except KeyError:
+        return jsonify({"message": "User not found"}), HTTPStatus.NOT_FOUND
 if __name__ == "__main__": 
     app.run(debug=True)

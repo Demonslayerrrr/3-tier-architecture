@@ -7,8 +7,7 @@ class UserRepository:
 
     def add_user(self, user_info:dict) -> None:
         user = {
-            "id": self.user_id,
-            "name": user_info["first_name"],
+            "first_name": user_info["first_name"],
             "last_name": user_info["last_name"],
             "age": date.today().year - user_info["birth_year"],
             "group": user_info["group"]
@@ -20,3 +19,16 @@ class UserRepository:
 
     def get_user(self, user_id:int) -> dict:
         return self.users[user_id]
+
+    def patch_user(self,user_id:int, user_modify:int) -> None:
+        if user_id not in self.users.keys():
+            raise KeyError("User not found")
+
+        user = {
+            "first_name": user_modify["first_name"],
+            "last_name": user_modify["last_name"],
+            "age": date.today().year - user_modify["birth_year"],
+            "group": user_modify["group"]
+        }
+
+        self.users[user_id] = user
