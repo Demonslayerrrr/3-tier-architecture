@@ -19,9 +19,12 @@ def get_user(user_id):
     
 @app.post("/users")
 def add_user():
-    user_info = request.json
-    controller.add_user(user_info)
-    return jsonify({"message": "User added"}), HTTPStatus.CREATED
+    try:
+        user_info = request.json
+        controller.add_user(user_info)
+        return jsonify({"message": "User added"}), HTTPStatus.CREATED
+    except ValueError:
+        return jsonify({"message": "Group does not exist"}), HTTPStatus.BAD_REQUEST
     
 @app.patch("/users/<int:user_id>")
 def patch_user(user_id):
