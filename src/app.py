@@ -32,5 +32,14 @@ def patch_user(user_id):
 
     except KeyError:
         return jsonify({"message": "User not found"}), HTTPStatus.NOT_FOUND
+
+@app.delete("/users/<int:user_id>")
+def delete_user(user_id):
+    try:
+        controller.delete_user(user_id)
+        return jsonify({"message": "User deleted"}), HTTPStatus.OK
+    
+    except KeyError:
+        return jsonify({"message": "User not found"}), HTTPStatus.NOT_FOUND
 if __name__ == "__main__": 
     app.run(debug=True)

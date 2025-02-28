@@ -32,3 +32,6 @@ class UserRepository:
         }
 
         self.users[user_id] = user
+        
+    def delete_user(self, user_id:int) -> None:
+        del self.users[user_id]

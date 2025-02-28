@@ -15,3 +15,6 @@ class UserController:
 
     def patch_user(self, user_id:int, user_modify:dict) -> None:
         self.repository.patch_user(user_id,user_modify)
+
+    def delete_user(self, user_id: int) -> None:
+        self.repository.delete_user(user_id)
