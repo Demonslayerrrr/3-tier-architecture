@@ -32,9 +32,10 @@ def patch_user(user_id):
         user_modify = request.json
         controller.patch_user(user_id,user_modify)
         return jsonify({"message": "User info modified"}),HTTPStatus.OK
-
     except KeyError:
         return jsonify({"message": "User not found"}), HTTPStatus.NOT_FOUND
+    except ValueError:
+        return jsonify({"message": "Group does not exist"}), HTTPStatus.BAD_REQUEST
 
 @app.delete("/users/<int:user_id>")
 def delete_user(user_id):

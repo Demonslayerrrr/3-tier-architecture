@@ -6,7 +6,7 @@ class UserRepository:
         self.user_id = 0
         self.groups = ["user","premium", "admin"]
     def add_user(self, user_info:dict) -> None:
-        if user_info["group"] not in self.groups:
+        if user_info["group"].lower() not in self.groups:
             raise ValueError()
         user = {
             "first_name": user_info["first_name"],
@@ -25,6 +25,9 @@ class UserRepository:
     def patch_user(self,user_id:int, user_modify:int) -> None:
         if user_id not in self.users.keys():
             raise KeyError()
+        
+        elif user_modify["group"].lower() not in self.groups:
+            raise ValueError()
 
         user = {
             "first_name": user_modify["first_name"],
