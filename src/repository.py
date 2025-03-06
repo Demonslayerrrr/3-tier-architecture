@@ -22,7 +22,7 @@ class UserRepository:
     def get_user(self, user_id:int) -> dict:
         return self.users[user_id]
 
-    def patch_user(self,user_id:int, user_modify:int) -> None:
+    def patch_user(self,user_id:int, user_modify:dict) -> None:
         if user_id not in self.users.keys():
             raise KeyError()
         
